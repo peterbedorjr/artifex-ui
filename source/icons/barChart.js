@@ -1,0 +1,1 @@
+module.exports = '<path d="M12 20V10m6 10V4M6 20v-4"/>'

@@ -1,0 +1,1 @@
+module.exports = '<path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3M4 21h16"/>'

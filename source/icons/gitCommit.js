@@ -1,0 +1,1 @@
+module.exports = '<circle cx="12" cy="12" r="4"/><path d="M1.05 12H7m10.01 0h5.95"/>'
