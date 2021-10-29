@@ -1,20 +1,25 @@
 <template>
   <button :class="classes">
-    <Loader v-if="loading" />
-    <slot v-else />
+    <Spinner v-if="loading" />
+    <Icon :icon="icon" color="white" class="button__icon" v-if="icon && ! loading" />
+    <slot />
   </button>
 </template>
 
 <script>
-import Loader from "../Spinner";
-import oneOf from "../../validators/one-of";
-import buttonVariants from "../../constants/button-variants";
-import sizes from "../../constants/button-sizes";
+import Spinner from '../Spinner';
+import Icon from '../Icon';
+import oneOf from '../../validators/one-of';
+import buttonVariants from '../../constants/button-variants';
+import sizes from '../../constants/button-sizes';
+import borderRadii from '../../constants/border-radii';
+import icons from '../../constants/icons';
 
 export default {
   name: 'Button',
   components: {
-    Loader,
+    Spinner,
+    Icon,
   },
   props: {
     variant: {
@@ -35,6 +40,15 @@ export default {
       type: Boolean,
       default: false,
     },
+    borderRadius: {
+      type: String,
+      default: 'normal',
+      validator: (val) => oneOf(val, borderRadii),
+    },
+    icon: {
+      type: String,
+      validator: (val) => oneOf(val, icons),
+    },
   },
   computed: {
     classes() {
@@ -42,9 +56,10 @@ export default {
         'button',
         `-${this.variant}`,
         this.size ? `-${this.size}` : null,
+        `-rounded-${this.borderRadius}`,
         {
           '-block': this.block,
-          '-loading': this.loading,
+          '-shifted': this.loading || this.icon,
         }
       ];
     },
@@ -53,29 +68,100 @@ export default {
 </script>
 
 <style>
+/* Base */
 .button {
-  min-width: 84px;
-
   @apply font-bold
     py-2
-    px-4
-    rounded
+    px-8
+    relative
     focus:outline-none
     focus:ring-2
     focus:border-transparent;
 }
+
+/* Border radius */
+.-rounded-small {
+  @apply rounded-sm;
+}
+.-rounded-normal {
+  @apply rounded-md;
+}
+.-rounded-large {
+  @apply rounded-lg;
+}
+.-rounded-full {
+  @apply rounded-full;
+}
+.-rounded-left-small {
+  @apply rounded-l-sm;
+}
+.-rounded-left-normal {
+  @apply rounded-l-md;
+}
+.-rounded-left-large {
+  @apply rounded-l-lg;
+}
+.-rounded-left-full {
+  @apply rounded-l-full;
+}
+.-rounded-right-small {
+  @apply rounded-r-sm;
+}
+.-rounded-right-normal {
+  @apply rounded-r-md;
+}
+.-rounded-right-large {
+  @apply rounded-r-lg;
+}
+.-rounded-right-full {
+  @apply rounded-r-full;
+}
+.-rounded-top-small {
+  @apply rounded-t-sm;
+}
+.-rounded-top-normal {
+  @apply rounded-t-md;
+}
+.-rounded-top-large {
+  @apply rounded-t-lg;
+}
+.-rounded-top-full {
+  @apply rounded-t-full;
+}
+.-rounded-bottom-small {
+  @apply rounded-b-sm;
+}
+.-rounded-bottom-normal {
+  @apply rounded-b-md;
+}
+.-rounded-bottom-large {
+  @apply rounded-b-lg;
+}
+.-rounded-bottom-full {
+  @apply rounded-b-full;
+}
+
+/* Sizing */
 .button.-block {
   @apply block w-full;
 }
-.button.-loading {
-  @apply flex justify-center content-center;
+.button.-shifted {
+  @apply flex pl-4 pr-5 justify-center items-center;
 }
 .button.-small {
   @apply py-1 px-2 text-sm;
 }
-.button.-large {
-  @apply py-3 px-6 text-lg;
+.button.-small.-shifted {
+  @apply pl-3 pr-5;
 }
+.button.-large {
+  @apply py-3 px-10 text-lg;
+}
+.button.-large.-shifted {
+  @apply pl-6 pr-7;
+}
+
+/* Colors */
 .button.-primary {
   @apply text-white
     bg-primary
@@ -146,5 +232,9 @@ export default {
   @apply font-normal
     text-primary
     hover:underline;
+}
+
+.button__icon {
+  @apply -ml-1 mr-3 h-5 w-5;
 }
 </style>

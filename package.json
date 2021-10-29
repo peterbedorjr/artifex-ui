@@ -4,13 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "TZ=UTC node --expose-gc ./node_modules/.bin/jest",
+    "test:watch": "npm t -- --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "collectCoverageFrom": [
+      "source/components/**/*.{js,vue}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ]
+  },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Peter Bedor",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@storybook/addon-actions": "^6.3.12",
@@ -20,10 +36,14 @@
     "@storybook/vue3": "^6.3.12",
     "@tailwindcss/forms": "^0.3.4",
     "@vue/cli-plugin-babel": "^4.5.14",
+    "@vue/test-utils": "^2.0.0-rc.16",
     "autoprefixer": "^10.3.7",
+    "babel-jest": "^26.0.0",
     "babel-loader": "^8.2.3",
+    "jest": "^26.0.0",
     "postcss": "^8.3.11",
     "tailwindcss": "^2.2.17",
+    "vue-jest": "^5.0.0-alpha.10",
     "vue-loader": "^16.8.2"
   },
   "dependencies": {

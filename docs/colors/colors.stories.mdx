@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs';
+import colors from './colors';
+
+<Meta title="Styles/Colors" />
+
+# Colors
+
+The color palette
+
+export const Color = (props) => {
+  const { name, textColor, color } = props.color;
+  return (
+    <div
+      key={name}
+      style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: 150,
+          padding: '1rem',
+          backgroundColor: color,
+          color: textColor,
+          cursor: 'default',
+        }}
+    >
+      <strong>{name}</strong>
+      <span style={{opacity: .5}}>{color}</span>
+    </div>
+  );
+}
+
+<React.Fragment>
+  <div style={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(6, 1fr)',
+    }}
+  >
+    {colors.map(color => (<Color key={color.name} color={color} />))}
+  </div>
+</React.Fragment>

@@ -283,3 +283,7 @@ export const zapOff = 'zap-off';
 export const zap = 'zap';
 export const zoomIn = 'zoom-in';
 export const zoomOut = 'zoom-out';
+
+import * as icons from './icons';
+
+export default Object.keys(icons);

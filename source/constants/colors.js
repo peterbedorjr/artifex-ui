@@ -1,1 +1,1 @@
-export default ['primary', 'secondary', 'info', 'success', 'warning', 'error', 'black', 'white'];
+export default ['primary', 'secondary', 'info', 'success', 'warning', 'danger', 'black', 'white'];

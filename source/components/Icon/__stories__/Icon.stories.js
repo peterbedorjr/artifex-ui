@@ -1,10 +1,8 @@
 import Icon from '../index';
 import sizes from '../../../constants/icon-sizes';
-import * as icons from '../../../constants/icons';
+import icons from '../../../constants/icons';
 import colors from '../../../constants/colors';
 export { default as Default } from './IconDefault.story';
-
-const iconVariants = Object.keys(icons);
 
 export default {
   title: 'Components/Icon',
@@ -12,7 +10,8 @@ export default {
   argTypes: {
     icon: {
       control: 'select',
-      options: iconVariants,
+      options: icons,
+      defaultValue: icons[0],
     },
     size: {
       control: 'select',
@@ -44,5 +43,8 @@ export default {
     width: 24,
     height: 24,
     color: 'black',
+  },
+  parameters:{
+    layout: 'centered',
   },
 };
