@@ -1,1 +1,3 @@
-export default ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+import validationColors from './validation-colors';
+
+export default ['primary', 'secondary', ...validationColors];

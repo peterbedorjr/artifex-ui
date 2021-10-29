@@ -1,7 +1,7 @@
 import oneOf from '../validators/one-of';
 
-export default (variants) => ({
+export default (variants, def = 'primary') => ({
   type: String,
-  default: 'primary',
+  default: def,
   validator: (val) => oneOf(val, variants),
 });

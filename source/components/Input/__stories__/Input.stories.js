@@ -1,7 +1,7 @@
 import Input from '../index';
 import borderRadii from '../../../constants/border-radii';
-import sizes from '../../../constants/input-sizes'
-import variants from '../../../constants/input-variants'
+import sizes from '../../../constants/input-sizes';
+import variants from '../../../constants/input-variants';
 export { default as Default } from './InputDefault.story';
 
 export default {
@@ -9,8 +9,14 @@ export default {
   component: Input,
   argTypes: {
     type: {
-      control: 'string',
+      control: 'text',
       description: 'The type of input',
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    modelValue: {
+      control: 'text',
     },
     size: {
       control: 'inline-radio',
@@ -22,12 +28,20 @@ export default {
       control: 'inline-radio',
       description: 'Input variant',
       options: variants,
-      defaultValue: 'primary',
-    }
+      defaultValue: '',
+    },
+    borderRadius: {
+      control: 'select',
+      description: 'The border radius',
+      defaultValue: 'normal',
+      options: borderRadii,
+    },
   },
   args: {
     type: 'text',
     size: 'normal',
+    disabled: false,
+    modelValue: 'Input value',
   },
   parameters:{
     layout: 'centered',

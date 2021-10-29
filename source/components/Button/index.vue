@@ -16,6 +16,7 @@ import Spinner from '../Spinner';
 import Icon from '../Icon';
 import oneOf from '../../validators/one-of';
 import buttonVariants from '../../constants/button-variants';
+import borderRadius from '../../props/border-radius';
 import borderRadii from '../../constants/border-radii';
 import sizes from '../../constants/sizes'
 import icons from '../../constants/icons';
@@ -31,6 +32,7 @@ export default {
   props: {
     size: size(sizes),
     variant: variant(buttonVariants),
+    borderRadius: borderRadius(borderRadii),
     block: {
       type: Boolean,
       default: false,
@@ -38,11 +40,6 @@ export default {
     loading: {
       type: Boolean,
       default: false,
-    },
-    borderRadius: {
-      type: String,
-      default: 'normal',
-      validator: (val) => oneOf(val, borderRadii),
     },
     icon: {
       type: String,
@@ -55,7 +52,7 @@ export default {
         'button',
         `-${this.variant}`,
         this.size ? `-${this.size}` : null,
-        `-rounded-${this.borderRadius}`,
+        this.borderRadius ? `-rounded-${this.borderRadius}` : null,
         {
           '-block': this.block,
           '-shifted': this.loading || this.icon,
@@ -161,6 +158,10 @@ export default {
   @apply pl-6 pr-7;
 }
 
+.button:disabled {
+ @apply cursor-not-allowed opacity-50;
+}
+
 /* Colors */
 .button.-primary {
   @apply text-white
@@ -171,8 +172,8 @@ export default {
     focus:ring-primary
     focus:bg-primary-dark;
 }
-.button:disabled.-primary {
-  @apply bg-primary-fade text-gray-50 cursor-not-allowed;
+.button:disabled:hover {
+  @apply bg-primary;
 }
 .button.-secondary {
   @apply text-white
@@ -183,8 +184,8 @@ export default {
     focus:ring-secondary
     focus:bg-secondary-dark;
 }
-.button:disabled.-secondary {
-  @apply bg-secondary-fade text-gray-50 cursor-not-allowed;
+.button:disabled:hover.-secondary {
+  @apply bg-secondary;
 }
 .button.-success {
   @apply text-white
@@ -195,8 +196,8 @@ export default {
     focus:ring-success
     focus:bg-success-dark;
 }
-.button:disabled.-success {
-  @apply bg-success-fade text-gray-50 cursor-not-allowed;
+.button:disabled:hover.-success {
+  @apply bg-success;
 }
 .button.-danger {
   @apply text-white
@@ -207,8 +208,8 @@ export default {
     focus:ring-danger
     focus:bg-danger-dark;
 }
-.button:disabled.-danger {
-  @apply bg-danger-fade text-gray-50 cursor-not-allowed;
+.button:disabled:hover.-danger {
+  @apply bg-danger;
 }
 .button.-warning {
   @apply text-black
@@ -231,8 +232,8 @@ export default {
     focus:ring-info
     focus:bg-info-dark;
 }
-.button:disabled.-info {
-  @apply bg-info-fade text-gray-50 cursor-not-allowed;
+.button:disabled:hover.-info {
+  @apply bg-info;
 }
 .button.-link {
   @apply font-normal

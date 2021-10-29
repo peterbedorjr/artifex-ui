@@ -58,7 +58,4 @@ export default {
     loading: false,
     icon: '',
   },
-  parameters:{
-    layout: 'centered',
-  },
 };
