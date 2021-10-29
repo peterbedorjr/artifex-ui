@@ -74,6 +74,8 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ['active'],
+      boxShadow: ['active'],
+      ringOpacity: ['focus'],
       primary: ['hover'],
     },
   },

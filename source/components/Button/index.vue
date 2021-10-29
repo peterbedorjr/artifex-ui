@@ -1,7 +1,12 @@
 <template>
   <button :class="classes">
     <Spinner v-if="loading" />
-    <Icon :icon="icon" color="white" class="button__icon" v-if="icon && ! loading" />
+    <Icon
+      :icon="icon"
+      color="white"
+      class="button__icon"
+      v-if="icon && !loading"
+    />
     <slot />
   </button>
 </template>
@@ -11,9 +16,11 @@ import Spinner from '../Spinner';
 import Icon from '../Icon';
 import oneOf from '../../validators/one-of';
 import buttonVariants from '../../constants/button-variants';
-import sizes from '../../constants/button-sizes';
 import borderRadii from '../../constants/border-radii';
+import sizes from '../../constants/sizes'
 import icons from '../../constants/icons';
+import size from '../../props/size';
+import variant from '../../props/variant';
 
 export default {
   name: 'Button',
@@ -22,16 +29,8 @@ export default {
     Icon,
   },
   props: {
-    variant: {
-      type: String,
-      default: 'primary',
-      validator: (val) => oneOf(val, buttonVariants),
-    },
-    size: {
-      type: [String, null],
-      default: null,
-      validator: (val) => oneOf(val, [...sizes, null]),
-    },
+    size: size(sizes),
+    variant: variant(buttonVariants),
     block: {
       type: Boolean,
       default: false,
@@ -60,7 +59,7 @@ export default {
         {
           '-block': this.block,
           '-shifted': this.loading || this.icon,
-        }
+        },
       ];
     },
   },
@@ -76,72 +75,73 @@ export default {
     relative
     focus:outline-none
     focus:ring-2
-    focus:border-transparent;
+    focus:border-transparent
+    active:shadow-inner;
 }
 
 /* Border radius */
-.-rounded-small {
+.button.-rounded-small {
   @apply rounded-sm;
 }
-.-rounded-normal {
+.button.-rounded-normal {
   @apply rounded-md;
 }
-.-rounded-large {
+.button.-rounded-large {
   @apply rounded-lg;
 }
-.-rounded-full {
+.button.-rounded-full {
   @apply rounded-full;
 }
-.-rounded-left-small {
+.button.-rounded-left-small {
   @apply rounded-l-sm;
 }
-.-rounded-left-normal {
+.button.-rounded-left-normal {
   @apply rounded-l-md;
 }
-.-rounded-left-large {
+.button.-rounded-left-large {
   @apply rounded-l-lg;
 }
-.-rounded-left-full {
+.button.-rounded-left-full {
   @apply rounded-l-full;
 }
-.-rounded-right-small {
+.button.-rounded-right-small {
   @apply rounded-r-sm;
 }
-.-rounded-right-normal {
+.button.-rounded-right-normal {
   @apply rounded-r-md;
 }
-.-rounded-right-large {
+.button.-rounded-right-large {
   @apply rounded-r-lg;
 }
-.-rounded-right-full {
+.button.-rounded-right-full {
   @apply rounded-r-full;
 }
-.-rounded-top-small {
+.button.-rounded-top-small {
   @apply rounded-t-sm;
 }
-.-rounded-top-normal {
+.button.-rounded-top-normal {
   @apply rounded-t-md;
 }
-.-rounded-top-large {
+.button.-rounded-top-large {
   @apply rounded-t-lg;
 }
-.-rounded-top-full {
+.button.-rounded-top-full {
   @apply rounded-t-full;
 }
-.-rounded-bottom-small {
+.button.-rounded-bottom-small {
   @apply rounded-b-sm;
 }
-.-rounded-bottom-normal {
+.button.-rounded-bottom-normal {
   @apply rounded-b-md;
 }
-.-rounded-bottom-large {
+.button.-rounded-bottom-large {
   @apply rounded-b-lg;
 }
-.-rounded-bottom-full {
+.button.-rounded-bottom-full {
   @apply rounded-b-full;
 }
 
-/* Sizing */
+/* Sizes */
 .button.-block {
   @apply block w-full;
 }
@@ -164,10 +164,11 @@ export default {
 /* Colors */
 .button.-primary {
   @apply text-white
+    focus:ring-opacity-50
     bg-primary
     hover:bg-primary-light
     active:bg-primary-dark
-    focus:ring-primary-lighter
+    focus:ring-primary
     focus:bg-primary-dark;
 }
 .button:disabled.-primary {
@@ -175,10 +176,11 @@ export default {
 }
 .button.-secondary {
   @apply text-white
+    focus:ring-opacity-50
     bg-secondary
     hover:bg-secondary-light
     active:bg-secondary-dark
-    focus:ring-secondary-lighter
+    focus:ring-secondary
     focus:bg-secondary-dark;
 }
 .button:disabled.-secondary {
@@ -186,10 +188,11 @@ export default {
 }
 .button.-success {
   @apply text-white
+    focus:ring-opacity-50
     bg-success
     hover:bg-success-light
     active:bg-success-dark
-    focus:ring-success-lighter
+    focus:ring-success
     focus:bg-success-dark;
 }
 .button:disabled.-success {
@@ -197,10 +200,11 @@ export default {
 }
 .button.-danger {
   @apply text-white
+    focus:ring-opacity-50
     bg-danger
     hover:bg-danger-light
     active:bg-danger-dark
-    focus:ring-danger-lighter
+    focus:ring-danger
     focus:bg-danger-dark;
 }
 .button:disabled.-danger {
@@ -208,10 +212,11 @@ export default {
 }
 .button.-warning {
   @apply text-black
+    focus:ring-opacity-50
     bg-warning
     hover:bg-warning-light
     active:bg-warning-dark
-    focus:ring-warning-lighter
+    focus:ring-warning
     focus:bg-warning-dark;
 }
 .button:disabled.-warning {
@@ -219,10 +224,11 @@ export default {
 }
 .button.-info {
   @apply text-white
+    focus:ring-opacity-50
     bg-info
     hover:bg-info-light
     active:bg-info-dark
-    focus:ring-info-lighter
+    focus:ring-info
     focus:bg-info-dark;
 }
 .button:disabled.-info {
@@ -234,6 +240,7 @@ export default {
     hover:underline;
 }
 
+/* Icons */
 .button__icon {
   @apply -ml-1 mr-3 h-5 w-5;
 }
