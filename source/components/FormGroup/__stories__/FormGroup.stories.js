@@ -1,11 +1,11 @@
-import TextField from '../index';
+import FormGroup from '../index';
 import validationColors from '../../../constants/validation-colors';
 import borderRadii from '../../../constants/border-radii';
-export { default as Default } from './TextFieldDefault.story';
+export { default as Default } from './FormGroupDefault.story';
 
 export default {
-  title: 'Components/TextField',
-  component: TextField,
+  title: 'Components/FormGroup',
+  component: FormGroup,
   argTypes: {
     label: {
       control: 'text',
@@ -33,6 +33,10 @@ export default {
       control: 'text',
       defaultValue: 'name',
     },
+    input: {
+      control: 'select',
+      options: ['Text'],
+    }
   },
   args: {
     label: 'Label',
@@ -45,8 +49,9 @@ export default {
       'This is another error message',
     ],
     name: 'name',
+    input: 'Text',
   },
-  parameters: {
+  parameters:{
     layout: 'centered',
   },
 };

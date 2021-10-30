@@ -19,12 +19,16 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    forInput: {
+      control: 'string',
+      defaultValue: 'test',
+    },
   },
   args: {
     default: 'Label',
+    forInput: 'test',
   },
   parameters:{
     layout: 'centered',
-    required: false,
   },
 };

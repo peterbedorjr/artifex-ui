@@ -1,6 +1,7 @@
 <template>
-  <label :class="classes">
+  <label :class="classes" :for="forInput">
     <slot />
+    <span v-if="required" class="label__required-indicator">*</span>
   </label>
 </template>
 
@@ -15,6 +16,9 @@ export default {
     required: {
       type: Boolean,
       default: false,
+    },
+    forInput: {
+      type: String,
     },
   },
   computed: {
@@ -31,7 +35,7 @@ export default {
 
 <style scoped>
 .label {
-  @apply block text-sm font-medium;
+  @apply block text-sm font-medium uppercase;
 }
 .label.-secondary {
   @apply text-secondary;
@@ -48,9 +52,7 @@ export default {
 .label.-danger {
   @apply text-danger;
 }
-.label.-required::after {
+.label__required-indicator {
   @apply inline-block ml-1 text-danger;
-
-  content: '*';
 }
 </style>

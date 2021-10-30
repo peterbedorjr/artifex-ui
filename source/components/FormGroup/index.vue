@@ -1,42 +1,20 @@
-<template>
-  <Label
-    :class="classes"
-    :for="name"
-    :variant="variant"
-    v-if="label"
-  >
-    {{ label }}
-  </Label>
-  <FieldDescription
-    v-if="description"
-    :id="`${name}-desc`"
-    class="mb-1.5"
-  >
-    {{ description }}
-  </FieldDescription>
-  <Input
-    v-bind="{ ...$attrs, ...props, id: name }"
-    class="mb-1.5"
-  />
-  <InputErrors :errors="errors" v-if="errors.length" class="mb-1.5" />
-</template>
-
 <script>
+import { h } from 'vue';
+
 import Label from '../Label';
-import Input from '../Input';
 import FieldDescription from '../FieldDescription';
 import InputErrors from '../InputErrors';
+
 import variant from '../../props/variant';
+
 import variants from '../../constants/validation-colors';
 import borderRadii from '../../constants/border-radii';
 import borderRadius from '../../props/border-radius';
 
 export default {
-  name: 'TextField',
-  inheritAttrs: false,
+  name: 'FormGroup',
   components: {
     FieldDescription,
-    Input,
     InputErrors,
     Label,
   },
@@ -78,7 +56,68 @@ export default {
       return props;
     },
   },
-};
+  methods: {
+    mapSlotNode(vnode) {
+      return h(vnode, {
+        class: 'mb-1.5',
+        ...this.$attrs,
+        ...this.props,
+        ...this.$props,
+        id: this.name,
+      });
+    },
+  },
+  render() {
+    let children = [];
+
+    if (this.label) {
+      children.push(
+        h(Label, {
+          variant: this.variant,
+          class: this.classes,
+          for: this.name,
+          innerText: this.label,
+        })
+      );
+    }
+
+    if (this.description) {
+      children.push(
+        h(FieldDescription, {
+          variant: this.variant,
+          class: 'mb-1.5',
+          id: `${this.name}-desc`,
+          innerText: this.description,
+        })
+      );
+    }
+
+    const slots = this.$slots.default()
+      .filter((node) => node.__v_isVNode)
+      .map(this.mapSlotNode.bind(this));
+
+    children = [
+      ...children,
+      ...slots,
+    ];
+
+    if (this.errors.length) {
+      children.push(
+        h(InputErrors, {
+          variant: this.variant,
+          class: 'mb-1.5',
+          errors: this.errors,
+        })
+      );
+    }
+
+    return h(
+      'div',
+      { class: this.classes },
+      children,
+    );
+  }
+}
 </script>
 
 <style scoped>

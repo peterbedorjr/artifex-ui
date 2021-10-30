@@ -44,7 +44,7 @@ export default {
     },
     color: {
       type: String,
-      validator: (val) => oneOf(val, [...colors]),
+      validator: (val) => oneOf(val, colors),
     }
   },
   computed: {

@@ -3,8 +3,10 @@
     :type="type"
     :class="classes"
     :value="modelValue"
+    :name="name"
+    :id="id || name"
     @input="$emit('update:modelValue', $event.target.value)"
-    v-bind="{ ...$attrs, ...$props }"
+    v-bind="$attrs"
   />
 </template>
 
@@ -18,7 +20,6 @@ import borderRadius from '../../props/border-radius';
 
 export default {
   name: 'Input',
-  inheritAttrs: false,
   props: {
     size: size(sizes),
     variant: variant(variants),
@@ -26,6 +27,16 @@ export default {
     type: {
       type: [String, Number],
       default: 'text',
+    },
+    modelValue: {
+      type: [String, Number],
+      default: '',
+    },
+    name: {
+      type: String,
+    },
+    id: {
+      type: String,
     },
   },
   computed: {
