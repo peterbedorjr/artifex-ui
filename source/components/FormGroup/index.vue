@@ -95,16 +95,7 @@ export default {
             return [
               h('div', {
                 class: 'flex justify-between w-full items-center',
-              }, [this.description, h(Tooltip, null, {
-                default: () => {
-                  return h('div', {
-                    class: 'bg-secondary text-white text-bold text-sm rounded-full w-4 h-4 flex justify-center items-center select-none cursor-pointer ml-5',
-                  }, '?');
-                },
-                tooltip: () => {
-                  return 'tooltip';
-                },
-              })])
+              }, [this.description])
             ];
           },
         })
@@ -122,7 +113,7 @@ export default {
       ];
     }
 
-    if (this.errors.length) {
+    if (this.errors && this.errors.length) {
       children.push(
         h(InputErrors, {
           variant: this.variant,

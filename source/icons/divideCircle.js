@@ -1,1 +1,0 @@
-module.exports = '<path d="M8 12h8m-4 4h0m0-8h0"/><circle cx="12" cy="12" r="10"/>'

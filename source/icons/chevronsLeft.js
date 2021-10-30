@@ -1,1 +1,0 @@
-module.exports = '<path d="m11 17-5-5 5-5m7 10-5-5 5-5"/>'

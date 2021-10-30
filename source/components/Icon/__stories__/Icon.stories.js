@@ -36,6 +36,11 @@ export default {
       description: 'Icon color',
       options: [...colors, 'currentColor'],
     },
+    type: {
+      control: 'inline-radio',
+      options: ['outline', 'solid'],
+      defaultValue: 'solid',
+    },
   },
   args: {
     size: null,

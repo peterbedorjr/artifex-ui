@@ -8,7 +8,7 @@ export default {
   component: Tooltip,
   argTypes: {
     placement: {
-      control: 'select',
+      control: 'inline-radio',
       options: positions,
     },
     default: {

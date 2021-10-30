@@ -1,0 +1,1 @@
+module.exports = '<path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4Z" stroke="#4B5563" stroke-linecap="round" stroke-linejoin="round"/>'

@@ -10,7 +10,7 @@
     :stroke-width="strokeWidth"
     stroke-linecap="round"
     stroke-linejoin="round"
-    v-html="require(`!./../../icons/${icon}.js`)"
+    v-html="require(`!./../../icons/${type}/${icon}.js`)"
   />
 </template>
 
@@ -27,7 +27,7 @@ export default {
     },
     strokeWidth: {
       type: Number,
-      default: 1,
+      default: 2,
     },
     size: {
       type: String,
@@ -45,14 +45,21 @@ export default {
     color: {
       type: String,
       validator: (val) => oneOf(val, colors),
-    }
+    },
+    type: {
+      type: String,
+      default: 'solid',
+    },
   },
   computed: {
     classes() {
       const classes = ['icon'];
 
-      if (this.color)
-      return ['icon', `-${this.color}`];
+      if (this.color) {
+        classes.push(`-${this.color}`);
+      }
+
+      return classes;
     },
     internalSize() {
       switch (this.size) {
