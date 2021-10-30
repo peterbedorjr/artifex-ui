@@ -1,7 +1,10 @@
 import FormGroup from '../index';
+
 import validationColors from '../../../constants/validation-colors';
 import borderRadii from '../../../constants/border-radii';
+
 export { default as Default } from './FormGroupDefault.story';
+export { default as Mulitple } from './FormGroupMultiple.story';
 
 export default {
   title: 'Components/FormGroup',
@@ -11,6 +14,9 @@ export default {
       control: 'text',
     },
     modelValue: {
+      control: 'text',
+    },
+    modelValue2: {
       control: 'text',
     },
     variant: {
@@ -33,23 +39,19 @@ export default {
       control: 'text',
       defaultValue: 'name',
     },
-    input: {
-      control: 'select',
-      options: ['Text'],
-    }
   },
   args: {
-    label: 'Label',
-    modelValue: 'value',
+    label: 'Name',
+    modelValue: 'Jean-Luc',
+    modelValue2: 'Picard',
     borderRadius: 'normal',
     variant: 'primary',
-    description: 'This is a field description',
+    description: 'The captain of the starship Enterprise',
     errors: [
       'This is an error message',
       'This is another error message',
     ],
     name: 'name',
-    input: 'Text',
   },
   parameters:{
     layout: 'centered',

@@ -3,6 +3,9 @@
     ref="target"
     @mouseenter="showTooltip"
     @mouseleave="hideTooltip"
+    @focus="showTooltip"
+    @blur="hideTooltip"
+    tabindex="0"
   >
     <slot />
   </div>

@@ -4,6 +4,7 @@ import { h } from 'vue';
 import Label from '../Label';
 import FieldDescription from '../FieldDescription';
 import InputErrors from '../InputErrors';
+import Tooltip from '../Tooltip';
 
 import variant from '../../props/variant';
 
@@ -17,6 +18,7 @@ export default {
     FieldDescription,
     InputErrors,
     Label,
+    Tooltip,
   },
   props: {
     variant: variant([...variants, 'primary']), // TODO: Simplify color constants
@@ -24,9 +26,6 @@ export default {
     label: {
       type: String,
       default: '',
-    },
-    modelValue: {
-      type: [String, Number],
     },
     description: {
       type: String,
@@ -63,6 +62,7 @@ export default {
         ...this.$attrs,
         ...this.props,
         ...this.$props,
+        ...vnode.props,
         id: this.name,
       });
     },
@@ -76,7 +76,10 @@ export default {
           variant: this.variant,
           class: this.classes,
           for: this.name,
-          innerText: this.label,
+        }, {
+          default: () => {
+            return this.label;
+          }
         })
       );
     }
@@ -87,19 +90,37 @@ export default {
           variant: this.variant,
           class: 'mb-1.5',
           id: `${this.name}-desc`,
-          innerText: this.description,
+        }, {
+          default: () => {
+            return [
+              h('div', {
+                class: 'flex justify-between w-full items-center',
+              }, [this.description, h(Tooltip, null, {
+                default: () => {
+                  return h('div', {
+                    class: 'bg-secondary text-white text-bold text-sm rounded-full w-4 h-4 flex justify-center items-center select-none cursor-pointer ml-5',
+                  }, '?');
+                },
+                tooltip: () => {
+                  return 'tooltip';
+                },
+              })])
+            ];
+          },
         })
       );
     }
 
-    const slots = this.$slots.default()
-      .filter((node) => node.__v_isVNode)
-      .map(this.mapSlotNode.bind(this));
+    if (Object.keys(this.$slots).length) {
+      const slots = this.$slots.default()
+        .filter((node) => node.__v_isVNode)
+        .map(this.mapSlotNode.bind(this));
 
-    children = [
-      ...children,
-      ...slots,
-    ];
+      children = [
+        ...children,
+        ...slots,
+      ];
+    }
 
     if (this.errors.length) {
       children.push(
