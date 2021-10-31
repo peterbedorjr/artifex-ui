@@ -32,7 +32,8 @@
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "jest/globals": true
     },
     "extends": [
       "plugin:vue/vue3-essential",
@@ -42,8 +43,12 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "vue/multi-word-component-names": 0
-    }
+      "vue/multi-word-component-names": 0,
+      "vue/no-multiple-template-root": 0
+    },
+    "plugins": [
+      "jest"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -64,6 +69,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.0",
     "babel-loader": "^8.2.3",
+    "eslint-plugin-jest": "^25.2.2",
     "eslint-plugin-vue": "^8.0.3",
     "jest": "^26.0.0",
     "postcss": "^8.3.11",

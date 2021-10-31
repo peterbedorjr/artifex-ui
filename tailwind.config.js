@@ -73,9 +73,9 @@ module.exports = {
   },
   variants: {
     extend: {
-      borderColor: ['disabled'],
+      borderColor: ['disabled', 'checked'],
       textColor: ['disabled'],
-      backgroundColor: ['active', 'disabled'],
+      backgroundColor: ['active', 'disabled', 'checked'],
       boxShadow: ['active'],
       ringOpacity: ['focus'],
       primary: ['hover'],

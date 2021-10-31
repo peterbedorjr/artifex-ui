@@ -7,7 +7,7 @@ export { default as Default } from './FormGroupDefault.story';
 export { default as Mulitple } from './FormGroupMultiple.story';
 
 export default {
-  title: 'Components/FormGroup',
+  title: 'Components/Forms/FormGroup',
   component: FormGroup,
   argTypes: {
     label: {
@@ -39,7 +39,7 @@ export default {
       control: 'text',
       defaultValue: 'name',
     },
-    split: {
+    inline: {
       control: 'boolean',
       defaultValue: false,
     },
@@ -50,7 +50,7 @@ export default {
     modelValue2: 'Picard',
     borderRadius: 'normal',
     variant: 'primary',
-    split: false,
+    inline: false,
     description: 'The captain of the starship Enterprise',
     errors: [
       'This is an error message',

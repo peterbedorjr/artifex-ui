@@ -3,7 +3,7 @@
     <Spinner v-if="loading" />
     <Icon
       :icon="icon"
-      color="white"
+      :color="iconColor"
       class="button__icon"
       v-if="icon && !loading"
     />
@@ -14,14 +14,16 @@
 <script>
 import Spinner from '../Spinner';
 import Icon from '../Icon';
+
 import oneOf from '../../validators/one-of';
-import buttonVariants from '../../constants/button-variants';
+
+import size from '../../props/size';
 import borderRadius from '../../props/border-radius';
-import borderRadii from '../../constants/border-radii';
+import variant from '../../props/variant';
+
+import buttonVariants from '../../constants/button-variants';
 import sizes from '../../constants/sizes'
 import icons from '../../constants/icons';
-import size from '../../props/size';
-import variant from '../../props/variant';
 
 export default {
   name: 'Button',
@@ -32,7 +34,7 @@ export default {
   props: {
     size: size(sizes),
     variant: variant(buttonVariants),
-    borderRadius: borderRadius(borderRadii),
+    borderRadius: borderRadius(),
     block: {
       type: Boolean,
       default: false,
@@ -58,6 +60,27 @@ export default {
           '-shifted': this.loading || this.icon,
         },
       ];
+    },
+    iconColor() {
+      let color;
+
+      switch (this.variant) {
+        case 'primary':
+        case 'secondary':
+        case 'success':
+        case 'danger':
+        case 'info':
+          color = 'white';
+          break;
+        case 'warning':
+          color = 'black';
+          break;
+        case 'link':
+          color = 'primary';
+          break;
+      }
+
+      return color;
     },
   },
 };
@@ -240,6 +263,9 @@ export default {
   @apply font-normal
     text-primary
     hover:underline;
+}
+.button:disabled:hover.-link {
+  @apply bg-transparent no-underline;
 }
 
 /* Icons */

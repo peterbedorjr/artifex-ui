@@ -1,14 +1,14 @@
-import Input from '../index';
+import Checkbox from '../index';
 
 import borderRadii from '../../../constants/border-radii';
-import sizes from '../../../constants/input-sizes';
 import variants from '../../../constants/input-variants';
+import sizes from '../../../constants/input-sizes';
 
-export { default as Default } from './InputDefault.story';
+export { default as Default } from './CheckboxDefault.story';
 
 export default {
-  title: 'Components/Forms/Input',
-  component: Input,
+  title: 'Components/Forms/Checkbox',
+  component: Checkbox,
   argTypes: {
     type: {
       control: 'text',
@@ -18,7 +18,7 @@ export default {
       control: 'boolean',
     },
     modelValue: {
-      control: 'text',
+      control: 'boolean',
     },
     size: {
       control: 'inline-radio',
@@ -30,7 +30,7 @@ export default {
       control: 'inline-radio',
       description: 'Input variant',
       options: variants,
-      defaultValue: 'normal',
+      defaultValue: 'primary',
     },
     borderRadius: {
       control: 'select',
@@ -38,17 +38,18 @@ export default {
       defaultValue: 'normal',
       options: borderRadii,
     },
-    placeholder: {
+    default: {
       control: 'text',
-    }
+      description: 'Slot content',
+    },
   },
   args: {
     type: 'text',
     size: 'normal',
     disabled: false,
-    modelValue: 'Input value',
-    variant: 'normal',
-    placeholder: 'Placeholder',
+    modelValue: false,
+    variant: 'primary',
+    default: 'Checkbox label',
   },
   parameters:{
     layout: 'centered',

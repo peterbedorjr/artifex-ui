@@ -1,10 +1,11 @@
 <template>
   <div
+    class="inline-block"
     ref="target"
-    @mouseenter="showTooltip"
-    @mouseleave="hideTooltip"
-    @focus="showTooltip"
-    @blur="hideTooltip"
+    @mouseenter="update(false)"
+    @mouseleave="update(true)"
+    @focus="update(false)"
+    @blur="update(true)"
     tabindex="0"
   >
     <slot />
@@ -61,15 +62,8 @@ export default {
 
   },
   methods: {
-    showTooltip() {
-      this.hidden = false;
-      // We need to tell Popper to update the tooltip position
-      // after we show the tooltip, otherwise it will be incorrect
-      this.popper.update();
-    },
-    hideTooltip() {
-      this.hidden = true;
-
+    update(hidden) {
+      this.hidden = hidden;
       this.popper.update();
     }
   },

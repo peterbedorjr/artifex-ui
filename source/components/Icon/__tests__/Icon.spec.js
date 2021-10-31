@@ -25,24 +25,13 @@ describe('Icon', () => {
   //   expect(wrapper.html().replace(/\n/g, '').replace(/\s/g, '')).toContain(require(`../../../icons/${icon}`).replace(/\n/g, '').replace(/\s/g, ''));
   // });
 
-  it('can set stroke width', () => {
-    const wrapper = shallowMount(Icon, {
-      props: {
-        strokeWidth: 10,
-        icon: 'anchor',
-      },
-    });
-
-    expect(wrapper.find('svg').html()).toContain('stroke-width="10"');
-  });
-
   it('can set a size', () => {
     const size = sizes[0];
 
     const wrapper = shallowMount(Icon, {
       props: {
         size,
-        icon: 'anchor',
+        icon: 'alert',
       }
     });
 
@@ -54,7 +43,7 @@ describe('Icon', () => {
       props: {
         width: 100,
         height: 100,
-        icon: 'anchor',
+        icon: 'alert',
       }
     });
 
@@ -65,7 +54,7 @@ describe('Icon', () => {
     const wrapper = shallowMount(Icon, {
       props: {
         color,
-        icon: 'anchor',
+        icon: 'alert',
       }
     });
 

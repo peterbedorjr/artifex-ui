@@ -21,7 +21,7 @@ export default {
   args: {
     placement: 'top',
     default: 'Test',
-    tooltip: 'Test',
+    tooltip: 'This is a tooltip',
   },
   parameters:{
     layout: 'centered',

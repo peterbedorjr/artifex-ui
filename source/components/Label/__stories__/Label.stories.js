@@ -3,7 +3,7 @@ import variants from '../../../constants/variants';
 export { default as Default } from './LabelDefault.story';
 
 export default {
-  title: 'Components/Label',
+  title: 'Components/Forms/Label',
   component: Label,
   argTypes: {
     default: {

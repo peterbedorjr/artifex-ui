@@ -1,19 +1,15 @@
-import Input from '../index';
+import Select from '../index';
 
 import borderRadii from '../../../constants/border-radii';
 import sizes from '../../../constants/input-sizes';
 import variants from '../../../constants/input-variants';
 
-export { default as Default } from './InputDefault.story';
+export { default as Default } from './SelectDefault.story';
 
 export default {
-  title: 'Components/Forms/Input',
-  component: Input,
+  title: 'Components/Forms/Select',
+  component: Select,
   argTypes: {
-    type: {
-      control: 'text',
-      description: 'The type of input',
-    },
     disabled: {
       control: 'boolean',
     },
@@ -30,7 +26,7 @@ export default {
       control: 'inline-radio',
       description: 'Input variant',
       options: variants,
-      defaultValue: 'normal',
+      defaultValue: 'primary',
     },
     borderRadius: {
       control: 'select',
@@ -38,17 +34,27 @@ export default {
       defaultValue: 'normal',
       options: borderRadii,
     },
+    options: {
+      control: 'array',
+      description: 'Options',
+    },
     placeholder: {
       control: 'text',
-    }
+    },
   },
   args: {
     type: 'text',
     size: 'normal',
     disabled: false,
-    modelValue: 'Input value',
-    variant: 'normal',
-    placeholder: 'Placeholder',
+    modelValue: 'test',
+    variant: 'primary',
+    placeholder: 'Select Value',
+    options: [
+      { label: 'Test', value: 'test' },
+      { label: 'Test2', value: 'test2' },
+      { label: 'Test3', value: 'test3' },
+      { label: 'Test4', value: 'test4' },
+    ],
   },
   parameters:{
     layout: 'centered',

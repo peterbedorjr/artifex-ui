@@ -2,7 +2,7 @@ import InputErrors from '../index';
 export { default as Default } from './InputErrorsDefault.story';
 
 export default {
-  title: 'Components/InputErrors',
+  title: 'Components/Forms/InputErrors',
   component: InputErrors,
   argTypes: {
     errors: {

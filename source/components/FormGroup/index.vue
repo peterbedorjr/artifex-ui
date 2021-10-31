@@ -37,7 +37,7 @@ export default {
       type: Array,
       default: () => [],
     },
-    split: {
+    inline: {
       type: Boolean,
       default: false,
     },
@@ -45,7 +45,7 @@ export default {
   computed: {
     classes() {
       return [
-        this.split ? '-split' : null,
+        this.inline ? '-inline' : null,
       ];
     },
     labelClasses() {
@@ -120,7 +120,7 @@ export default {
     if (Object.keys(this.$slots).length) {
       const slots = this.$slots.default()
         .filter((node) => node.__v_isVNode);
-        
+
       children = [
         ...children,
         h('div', {
@@ -155,7 +155,7 @@ export default {
 .label.-description {
   @apply mb-0.5;
 }
-.form-group__inputs.-split {
+.form-group__inputs.-inline {
   @apply flex;
 }
 </style>

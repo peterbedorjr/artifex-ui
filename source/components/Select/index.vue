@@ -1,29 +1,42 @@
 <template>
-  <input
-    :type="type"
+  <select
     :class="classes"
     :value="modelValue"
     :name="name"
     :id="id || name"
-    :placeholder="placeholder"
     @input="$emit('update:modelValue', $event.target.value)"
     v-bind="$attrs"
-  />
+  >
+    <option value="" disabled selected v-if="placeholder">{{ placeholder }}</option>
+    <option
+      v-for="(option, i) in options"
+      :value="option.value"
+      :key="i"
+    >
+      {{ option.label }}
+    </option>
+  </select>
 </template>
 
 <script>
 import inputProps from '../../props/input';
 
 export default {
-  name: 'Input',
-  props: inputProps(),
+  name: 'Select',
+  props: {
+    ...inputProps(),
+    options: {
+      type: Array,
+      default: () => [],
+    },
+  },
   computed: {
     classes() {
       return [
         this.size ? `-${this.size}` : null,
         this.variant ? `-${this.variant}` : null,
         this.borderRadius ? `-rounded-${this.borderRadius}` : null,
-        'input'
+        'select'
       ];
     },
   },
@@ -32,7 +45,7 @@ export default {
 
 <style scoped>
 /* Base */
-.input {
+.select {
   @apply
     bg-white
     shadow
@@ -52,97 +65,97 @@ export default {
 }
 
 /* Sizes */
-.input.-small {
+.select.-small {
   @apply py-1 px-2 text-xs;
 }
-.input.-large {
+.select.-large {
   @apply py-3 px-4 text-xl;
 }
 
 /* Colors */
-.input.-primary {
+.select.-primary {
   @apply focus:ring-primary focus:border-primary focus:ring-opacity-50;
 }
-.input.-secondary {
+.select.-secondary {
   @apply text-secondary focus:ring-secondary focus:border-secondary border-secondary focus:ring-opacity-50;
 }
-.input.-success {
+.select.-success {
   @apply text-success focus:ring-success focus:border-success border-success focus:ring-opacity-50;
 }
-.input.-danger {
+.select.-danger {
   @apply text-danger focus:ring-danger focus:border-danger border-danger focus:ring-opacity-50;
 }
-.input.-warning {
+.select.-warning {
   @apply text-warning focus:ring-warning focus:border-warning border-warning focus:ring-opacity-50;
 }
-.input.-info {
+.select.-info {
   @apply text-info focus:ring-info focus:border-info border-info focus:ring-opacity-50;
 }
 
 /* States */
-.input:disabled {
+.select:disabled {
   @apply cursor-not-allowed;
 }
 
 /* Border radius */
-.input.-rounded-small {
+.select.-rounded-small {
   @apply rounded-sm;
 }
-.input.-rounded-normal {
+.select.-rounded-normal {
   @apply rounded-md;
 }
-.input.-rounded-large {
+.select.-rounded-large {
   @apply rounded-lg;
 }
-.input.-rounded-full {
+.select.-rounded-full {
   @apply rounded-full;
 }
-.input.-rounded-left-small {
+.select.-rounded-left-small {
   @apply rounded-l-sm;
 }
-.input.-rounded-left-normal {
+.select.-rounded-left-normal {
   @apply rounded-l-md;
 }
-.input.-rounded-left-large {
+.select.-rounded-left-large {
   @apply rounded-l-lg;
 }
-.input.-rounded-left-full {
+.select.-rounded-left-full {
   @apply rounded-l-full;
 }
-.input.-rounded-right-small {
+.select.-rounded-right-small {
   @apply rounded-r-sm;
 }
-.input.-rounded-right-normal {
+.select.-rounded-right-normal {
   @apply rounded-r-md;
 }
-.input.-rounded-right-large {
+.select.-rounded-right-large {
   @apply rounded-r-lg;
 }
-.input.-rounded-right-full {
+.select.-rounded-right-full {
   @apply rounded-r-full;
 }
-.input.-rounded-top-small {
+.select.-rounded-top-small {
   @apply rounded-t-sm;
 }
-.input.-rounded-top-normal {
+.select.-rounded-top-normal {
   @apply rounded-t-md;
 }
-.input.-rounded-top-large {
+.select.-rounded-top-large {
   @apply rounded-t-lg;
 }
-.input.-rounded-top-full {
+.select.-rounded-top-full {
   @apply rounded-t-full;
 }
-.input.-rounded-bottom-small {
+.select.-rounded-bottom-small {
   @apply rounded-b-sm;
 }
-.input.-rounded-bottom-normal {
+.select.-rounded-bottom-normal {
   @apply rounded-b-md;
 }
-.input.-rounded-bottom-large {
+.select.-rounded-bottom-large {
   @apply rounded-b-lg;
 }
-.input.-rounded-bottom-full {
+.select.-rounded-bottom-full {
   @apply rounded-b-full;
 }
 </style>

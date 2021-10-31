@@ -9,3 +9,13 @@ export const parameters = {
     },
   },
 };
+
+export const decorators = [
+  () => ({
+    template: `
+      <div class="w-60">
+        <story />
+      </div>
+    `,
+  }),
+];

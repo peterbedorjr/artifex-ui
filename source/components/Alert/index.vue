@@ -5,7 +5,7 @@
         :icon="icon"
         :color="color"
         class="alert__icon"
-        v-show="showIcon"
+        v-if="showIcon"
       />
       <div class="alert__inner">
         <slot />
@@ -71,8 +71,9 @@ export default {
 </script>
 
 <style scoped>
+/* Base */
 .alert {
-  @apply flex justify-between items-center font-semibold rounded;
+  @apply flex justify-between items-center font-semibold rounded border border-t-4;
 }
 .alert__content {
   @apply flex items-center p-3;
@@ -80,16 +81,18 @@ export default {
 .alert__icon {
   @apply mr-2 min-w-min;
 }
+
+/* Colors */
 .alert.-info {
-  @apply bg-blue-200 text-info-darker border-2 border-info;
+  @apply bg-blue-200 text-info-darker border-info;
 }
 .alert.-warning {
-  @apply bg-yellow-100 text-yellow-800 border-2 border-warning-darker;
+  @apply bg-yellow-100 text-yellow-800 border-warning-darker;
 }
 .alert.-danger {
-  @apply bg-red-200 text-danger-darker border-2 border-danger-darker;
+  @apply bg-red-200 text-danger-darker border-danger-darker;
 }
 .alert.-success {
-  @apply bg-green-200 text-success-darker border-2 border-success-darker;
+  @apply bg-green-200 text-success-darker border-success-darker;
 }
 </style>

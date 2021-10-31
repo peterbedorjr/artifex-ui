@@ -62,16 +62,15 @@ describe('Button', () => {
   it('renders an icon', () => {
     const wrapper = shallowMount(Button, {
       props: {
-        icon: 'award',
+        icon: 'alert',
       },
     });
 
     expect(wrapper.findComponent(Icon).exists()).toBe(true);
 
     expect(wrapper.findComponent(Icon).props()).toEqual({
-      icon: 'award',
+      icon: 'alert',
       color: 'white',
-      strokeWidth: 1,
       size: 'normal',
       width: 24,
       height: 24

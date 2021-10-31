@@ -38,7 +38,7 @@ describe('FormGroup', () => {
     expect(wrapper.findAll('li').at(2).text()).toEqual('Crusher');
   });
 
-  it('renders the slot content', () => {
+  it('renders the slot content stacked', () => {
     const wrapper = mount(FormGroup, {
       slots: {
         default: `
@@ -49,5 +49,22 @@ describe('FormGroup', () => {
     });
 
     expect(wrapper.findAll('input')).toHaveLength(2);
+  });
+
+  it('renders the slot content inline', () => {
+    const wrapper = mount(FormGroup, {
+      props: {
+        inline: true,
+      },
+      slots: {
+        default: `
+          <input />
+          <input />
+        `
+      },
+    });
+
+    expect(wrapper.findAll('input')).toHaveLength(2);
+    expect(wrapper.find('.form-group__inputs').classes()).toContain('-inline');
   });
 });
