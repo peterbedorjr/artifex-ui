@@ -60,7 +60,7 @@ module.exports = {
         },
       }
     },
-    stroke: (theme) => ({
+    fill: (theme) => ({
       primary: theme('colors.primary'),
       secondary: theme('colors.secondary'),
       info: theme('colors.info'),

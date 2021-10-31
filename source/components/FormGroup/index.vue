@@ -37,9 +37,18 @@ export default {
       type: Array,
       default: () => [],
     },
+    split: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     classes() {
+      return [
+        this.split ? '-split' : null,
+      ];
+    },
+    labelClasses() {
       return [
         'label',
         this.description ? '-description' : null,
@@ -56,9 +65,15 @@ export default {
     },
   },
   methods: {
-    mapSlotNode(vnode) {
+    mapSlotNode(vnode, i, total) {
+      const classes = ['mb-2'];
+
+      if (i < (total - 1)) {
+        classes.push('mr-2');
+      }
+
       return h(vnode, {
-        class: 'mb-1.5',
+        class: classes,
         ...this.$attrs,
         ...this.props,
         ...this.$props,
@@ -74,7 +89,7 @@ export default {
       children.push(
         h(Label, {
           variant: this.variant,
-          class: this.classes,
+          class: this.labelClasses,
           for: this.name,
         }, {
           default: () => {
@@ -104,12 +119,13 @@ export default {
 
     if (Object.keys(this.$slots).length) {
       const slots = this.$slots.default()
-        .filter((node) => node.__v_isVNode)
-        .map(this.mapSlotNode.bind(this));
-
+        .filter((node) => node.__v_isVNode);
+        
       children = [
         ...children,
-        ...slots,
+        h('div', {
+          class: ['form-group__inputs', this.classes],
+        }, slots.map((slot, i) => this.mapSlotNode(slot, i, slots.length))),
       ];
     }
 
@@ -125,7 +141,7 @@ export default {
 
     return h(
       'div',
-      { class: this.classes },
+      { class: 'form-group' },
       children,
     );
   }
@@ -138,5 +154,8 @@ export default {
 }
 .label.-description {
   @apply mb-0.5;
+}
+.form-group__inputs.-split {
+  @apply flex;
 }
 </style>

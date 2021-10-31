@@ -11,7 +11,7 @@
         <slot />
       </div>
     </div>
-    <button class="h-full p-3" v-if="closable">
+    <button class="h-full p-3 min-w-min" v-if="closable" @click="$emit('close', $event)">
       <Icon
         icon="x"
         :color="color"
@@ -51,14 +51,11 @@ export default {
       const map = {
         info: 'info',
         success: 'checkCircle',
-        warning: 'alertTriangle',
-        danger: 'xOctagon',
+        warning: 'alert',
+        danger: 'xCircle',
       }
 
       return map[this.variant];
-    },
-    color() {
-      return this.variant === 'warning' ? 'black' : 'white';
     },
     classes() {
       return [
@@ -66,30 +63,33 @@ export default {
         `-${this.variant}`,
       ];
     },
+    color() {
+      return this.variant;
+    }
   },
 };
 </script>
 
 <style scoped>
 .alert {
-  @apply flex justify-between items-center font-semibold;
+  @apply flex justify-between items-center font-semibold rounded;
 }
 .alert__content {
   @apply flex items-center p-3;
 }
 .alert__icon {
-  @apply mr-2;
+  @apply mr-2 min-w-min;
 }
 .alert.-info {
-  @apply bg-info-fade text-info-darker border-2 border-info;
+  @apply bg-blue-200 text-info-darker border-2 border-info;
 }
 .alert.-warning {
-  @apply bg-warning text-black border-2 border-warning-darker;
+  @apply bg-yellow-100 text-yellow-800 border-2 border-warning-darker;
 }
 .alert.-danger {
-  @apply bg-danger text-white border-2 border-danger-darker;
+  @apply bg-red-200 text-danger-darker border-2 border-danger-darker;
 }
 .alert.-success {
-  @apply bg-success text-white border-2 border-success-darker;
+  @apply bg-green-200 text-success-darker border-2 border-success-darker;
 }
 </style>

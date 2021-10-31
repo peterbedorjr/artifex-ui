@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     classes() {
-      return [];
+      return ['button-group'];
     },
   },
   methods: {
@@ -60,3 +60,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.button-group {
+  @apply flex;
+}
+</style>

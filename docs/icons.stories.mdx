@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs';
+import icons from '../source/constants/icons';
+
+<Meta title="Styles/Icons" />
+
+export const Icon = (props) => {
+  const icon = props.icon
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 128,
+        margin: '0 -1px -1px 0',
+        border: '1px solid #E5E5E5',
+      }}
+    >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      dangerouslySetInnerHTML={{ __html: require(`!./../source/icons/${icon}.js`) }}
+    />
+      <div style={{ fontSize: '0.875rem', paddingTop: 10, paddingLeft: 8, paddingRight: 8, textAlign: 'center' }}>{icon}</div>
+    </div>
+  )
+}
+
+# Icons
+
+## Icon Set
+
+<React.Fragment>
+  <div
+    style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(128px, 1fr))' }}>
+    {icons.map((icon) => (
+      <Icon icon={icon} key={icon} />
+    ))}
+  </div>
+</React.Fragment>

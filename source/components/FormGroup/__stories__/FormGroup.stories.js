@@ -39,6 +39,10 @@ export default {
       control: 'text',
       defaultValue: 'name',
     },
+    split: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
   args: {
     label: 'Name',
@@ -46,6 +50,7 @@ export default {
     modelValue2: 'Picard',
     borderRadius: 'normal',
     variant: 'primary',
+    split: false,
     description: 'The captain of the starship Enterprise',
     errors: [
       'This is an error message',

@@ -8,6 +8,7 @@ export default ((args, { argTypes }) => ({
     <FormGroup v-bind="args">
       <Input v-model="args.modelValue" placeholder="First name" />
       <Input v-model="args.modelValue2" placeholder="Last name" />
+      <Input v-model="args.modelValue2" placeholder="Last name" />
     </FormGroup>
   `,
   data: () => ({ args }),

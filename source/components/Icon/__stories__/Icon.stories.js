@@ -19,10 +19,6 @@ export default {
       defaultValue: 'normal',
       options: sizes,
     },
-    strokeWidth: {
-      control: 'number',
-      description: 'The stroke width of the icon',
-    },
     width: {
       control: 'number',
       description: 'The width of the icon',
@@ -36,15 +32,9 @@ export default {
       description: 'Icon color',
       options: [...colors, 'currentColor'],
     },
-    type: {
-      control: 'inline-radio',
-      options: ['outline', 'solid'],
-      defaultValue: 'solid',
-    },
   },
   args: {
     size: null,
-    strokeWidth: 1,
     width: 24,
     height: 24,
     color: 'black',

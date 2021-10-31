@@ -5,12 +5,11 @@
     xmlns="http://www.w3.org/2000/svg"
     :width="internalSize.width"
     :height="internalSize.height"
+    :strokeWidth="strokeWidth"
     viewBox="0 0 24 24"
-    fill="none"
-    :stroke-width="strokeWidth"
     stroke-linecap="round"
     stroke-linejoin="round"
-    v-html="require(`!./../../icons/${type}/${icon}.js`)"
+    v-html="require(`!./../../icons/${icon}.js`)"
   />
 </template>
 
@@ -24,10 +23,6 @@ export default {
   props: {
     icon: {
       type: String,
-    },
-    strokeWidth: {
-      type: Number,
-      default: 2,
     },
     size: {
       type: String,
@@ -46,10 +41,6 @@ export default {
       type: String,
       validator: (val) => oneOf(val, colors),
     },
-    type: {
-      type: String,
-      default: 'solid',
-    },
   },
   computed: {
     classes() {
@@ -62,64 +53,48 @@ export default {
       return classes;
     },
     internalSize() {
-      switch (this.size) {
-        case 'xsmall': {
-          return { width: 14, height: 14 };
-        }
+      const map = {
+        xsmall: { width: 14, height: 14 },
+        small: { width: 14, height: 14 },
+        normal: { width: this.width, height: this.height },
+        large: { width: 32, height: 32 },
+        xlarge: { width: 48, height: 48 },
+      };
 
-        case 'small': {
-          return { width: 18, height: 18 };
-        }
-
-        case 'normal': {
-          return { width: this.width, height: this.height };
-        }
-
-        case 'large': {
-          return { width: 32, height: 32 };
-        }
-
-        case 'xlarge': {
-          return { width: 48, height: 48 };
-        }
-
-        default: {
-          return { width: 24, height: 24 };
-        }
+      if (map[this.size]) {
+        return map[this.size];
       }
+
+      return { width: 24, height: 24 };
     },
   },
 };
 </script>
 
 <style scoped>
-.icon {
-  /* TODO: stroke-current doesn't work for some reason, investigate later maybe */
-  stroke: currentColor;
-}
 .icon.-primary {
-  @apply stroke-primary;
+  @apply fill-primary-darker;
 }
 .icon.-secondary {
-  @apply stroke-secondary;
+  @apply fill-secondary-darker;
 }
 .icon.-info {
-  @apply stroke-info;
+  @apply fill-info-darker;
 }
 .icon.-success {
-  @apply stroke-success;
+  @apply fill-success-darker;
 }
 .icon.-warning {
-  @apply stroke-warning;
+  @apply fill-warning-darker;
 }
 .icon.-danger {
-  @apply stroke-danger;
+  @apply fill-danger-darker;
 }
 .icon.-black {
-  @apply stroke-black;
+  @apply fill-black;
 }
 .icon.-white {
-  @apply stroke-white;
+  @apply fill-white;
 }
 </style>
 

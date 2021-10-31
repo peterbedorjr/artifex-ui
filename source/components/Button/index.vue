@@ -73,7 +73,8 @@ export default {
     focus:outline-none
     focus:ring-2
     focus:border-transparent
-    active:shadow-inner;
+    active:shadow-inner
+    focus:z-10;
 }
 
 /* Border radius */
@@ -143,13 +144,13 @@ export default {
   @apply block w-full;
 }
 .button.-shifted {
-  @apply flex pl-4 pr-5 justify-center items-center;
+  @apply flex pl-4 pr-4 justify-center items-center;
 }
 .button.-small {
   @apply py-1 px-2 text-sm;
 }
 .button.-small.-shifted {
-  @apply pl-3 pr-5;
+  @apply pl-3 pr-3;
 }
 .button.-large {
   @apply py-3 px-10 text-lg;
